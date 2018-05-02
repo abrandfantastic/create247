@@ -79,10 +79,12 @@ WSGI_APPLICATION = 'create247.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+"""
 import dj_database_url
 DATABASES = {'default': dj_database_url.config()}
-
 """
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -93,7 +95,7 @@ DATABASES = {
         'PORT': '',
     }
 }
-"""
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
