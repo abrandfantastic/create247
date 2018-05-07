@@ -47,5 +47,8 @@ class Jobs(models.Model):
    budget = models.ForeignKey(Budget)
    user = models.ForeignKey(User)
 
+   def get_absolute_url(self):
+       return reverse('jobs-update', kwargs={'pk': self.pk})
+
    def __str__(self):
        return self.name

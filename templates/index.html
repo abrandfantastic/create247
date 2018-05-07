@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home Index{% endblock %}
 
 {% block body %}
 
@@ -13,7 +13,7 @@
        {% endif %}!
 <main>
      {% for jobs in jobs %}
-        <h2>{{ jobs.name }} by {{ jobs.user }}</h2>
+        <h2>{{ jobs.name }} by {{ jobs.user }} ID={{ jobs.id }}</h2>
     {% endfor %}
 </main>
     </h4>

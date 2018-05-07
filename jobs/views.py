@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from jobs.models import Jobs
-from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
-
+from django.core.urlresolvers import reverse_lazy
+from .models import Jobs
+from django.contrib.auth.decorators import login_required
+from django.views import generic
 
 # Create your views here.
 """
@@ -13,18 +13,17 @@ def home(request):
         'count': count,
     }
     return render(request, "home.html", context)
-"""
 
 
-def home(request):
+def index(request):
     jobs = Jobs.objects.all()
 
     context = {
         'jobs': jobs,
 
     }
-    return render(request, "home.html", context)
-
+    return render(request, "index.html", context)
+"""
 
 @login_required
 def profile(request):
@@ -45,4 +44,13 @@ class JobsCreate(CreateView):
         form.instance.user = self.request.user
         return super(JobsCreate, self).form_valid(form)
 
-    success_url = '/jobs/profile/'
+    success_url = 'jobs:profile'
+
+   #success_url = reverse_lazy('index.html')
+
+class JobsUpdate(UpdateView):
+    model = Jobs
+    fields = ['name', 'description', 'skills', 'currency', 'budget']
+
+    success_url = 'jobs:profile'
+

@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <title>Profile in Jobs</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Home Profile{% endblock %}
+
+{% block body %}
+
 {% if request.user.is_authenticated %}
     <h4>
        Welcome to the house of Fun {% if request.user.first_name %}
@@ -14,15 +13,16 @@
        {% endif %}!
 <main>
      {% for jobs in jobs %}
-        <h2>{{ jobs.name }} by {{ jobs.user }}</h2>
+        <h2>{{ jobs.name }} by {{ jobs.user }} ID={{ jobs.id }}</h2>
     {% endfor %}
 </main>
-<a href="{% url 'django.contrib.auth.views.logout' %}">Logout</a>
-
     </h4>
 {% else %}
 Welcome to Create.
 {% endif %}
 We have {{ jobs.count }} job{{ jobs.count|pluralize }} today.
-</body>
-</html>
+
+{% endblock %}
+
+
+
